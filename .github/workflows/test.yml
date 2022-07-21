@@ -11,7 +11,7 @@ on:
 jobs:
   job-1:
     name: Hello
-    runs-on: [self-hosted, ubuntu]
+    runs-on: ubuntu
     steps:
       - run: |
           echo "Hello World"
@@ -20,7 +20,7 @@ jobs:
           echo "Hi Elliot"
   job-2:
     name: Merge Test
-    runs-on: [self-hosted, ubuntu]
+    runs-on: ubuntu
     if: ${{ github.event.pull_request.merged }}
     steps:
       - run: |
