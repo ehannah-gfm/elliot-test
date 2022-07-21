@@ -1,0 +1,24 @@
+name: Elliot Workflow
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches:
+      - '**'
+
+jobs:
+  job-1:
+    name: Hello
+    runs-on: [self-hosted, ubuntu]
+    steps:
+      - run: |
+          echo "Hello World"
+  job-2:
+    name: Merge Test
+    runs-on: [self-hosted, ubuntu]
+    if: ${{ github.event.pull_request.merged }}
+    steps:
+      - run: |
+          echo "I was ran and merged"
