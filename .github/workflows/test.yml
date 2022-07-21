@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - '**'
+  pull_request:
+    branches:
+      - 'main'
+    types:
+      - opened
+      - closed
+      - synchronize
 
 jobs:
   job-1:
@@ -23,3 +30,7 @@ jobs:
       - name: PR Merge me
         if: ${{ github.event.pull_request.merged }}
         run: echo "I was merged because of github.event.pull_request.merged"
+
+      - name: PR was closed
+        if: ${{ github.event.pull_request.closed }}
+        run: echo "I was ran because the PR was closed"
