@@ -1,4 +1,4 @@
-status = ["job-1"]
-pr_status = ["job-1"]
+status = ["Hello"]
+pr_status = ["Hello"]
 use_squash_merge = true
 delete_merged_branches = true
