@@ -20,5 +20,9 @@ jobs:
           echo "Hi Elliot"
 
       - name: Merge me
+        if: ${{ github.ref_name == 'main' }}
+        run: echo "I was merged because of a merge to main"
+
+      - name: Merge me
         if: ${{ github.event.pull_request.merged }}
-        run: echo "I was merged :)"
+        run: echo "I was merged because of github.event.pull_request.merged"
