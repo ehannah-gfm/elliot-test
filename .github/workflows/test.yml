@@ -15,6 +15,9 @@ jobs:
     steps:
       - run: |
           echo "Hello World"
+
+      - run: |
+          echo "Hi Elliot"
   job-2:
     name: Merge Test
     runs-on: [self-hosted, ubuntu]
