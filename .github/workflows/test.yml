@@ -33,4 +33,4 @@ jobs:
 
       - name: PR was closed
         if: ${{ github.event.pull_request.closed }}
-        run: echo "I was ran because the PR was closed"
+        run: echo "I was ran because the PR was closed!!!"
