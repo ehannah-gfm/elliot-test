@@ -11,14 +11,14 @@ on:
 jobs:
   job-1:
     name: Hello
-    runs-on: [self-hosted, ubuntu]
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "Hello World"
-  job-2:
-    name: Merge Test
-    runs-on: [self-hosted, ubuntu]
-    if: ${{ github.event.pull_request.merged }}
-    steps:
+
       - run: |
-          echo "I was ran and merged"
+          echo "Hi Elliot"
+
+      - name: Merge me
+        if: ${{ github.event.pull_request.merged }}
+        run: echo "I was merged :)"
