@@ -22,8 +22,6 @@ jobs:
   job-1:
     name: Hello
     runs-on: ubuntu-latest
-    env:
-      FAROS_DRY_RUN: 0
     steps:
       - run: |
           echo "Hello World"
