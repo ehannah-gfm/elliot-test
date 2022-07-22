@@ -29,14 +29,14 @@ jobs:
         run: |
             echo "$GITHUB_CONTEXT"
 
-      - name: Merge me
+      - name: If PR is closed
+        if: ${{ github.event.pull_request.state == 'closed' }}
+        run: echo "I was ran because the PR was closed"
+
+      - name: If merge to main
         if: ${{ github.ref_name == 'main' }}
-        run: echo "I was merged because of a merge to main"
+        run: echo "I was ran because of a merge to main"
 
       - name: PR Merge me
         if: ${{ github.event.pull_request.merged }}
         run: echo "I was merged because of github.event.pull_request.merged"
-
-      - name: PR was closed
-        if: ${{ github.event.pull_request.closed }}
-        run: echo "I was ran because the PR was closed!!!"
