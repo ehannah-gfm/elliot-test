@@ -59,6 +59,9 @@ jobs:
     needs: [job-1]
     steps:
       - run: |
+          echo "$GITHUB_ENV"
+
+      - run: |
           echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
         if: ${{ startsWith(github.ref_name, 'test') }}
 
