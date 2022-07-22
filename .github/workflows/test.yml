@@ -50,6 +50,9 @@ jobs:
       - run: |
           echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
 
+      - run: |
+          echo "$GITHUB_ENV"
+
   job-2:
     name: World
     runs-on: ubuntu-latest
