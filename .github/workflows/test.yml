@@ -51,7 +51,7 @@ jobs:
           echo ${{ env.FAROS_DRY_RUN }}
 
       - run: |
-          echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
+          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
 
       - run: |
           echo ${{ env.FAROS_DRY_RUN }}
