@@ -40,3 +40,24 @@ jobs:
       - name: PR Merge me
         if: ${{ github.event.pull_request.merged }}
         run: echo "I was merged because of github.event.pull_request.merged"
+
+      - run: |
+          echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
+        if: ${{ github.ref_name != 'main' }}
+
+      - run: |
+          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
+        if: ${{ github.ref_name == 'main' }}
+
+  job-2:
+    name: World
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref_name, 'v') || startsWith(github.ref_name, 'test') }}
+    steps:
+      - run: |
+          echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
+        if: ${{ startsWith(github.ref_name, 'test') }}
+
+      - run: |
+          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
+        if: ${{ startsWith(github.ref_name, 'v') }}
