@@ -30,8 +30,8 @@ jobs:
             echo "$GITHUB_CONTEXT"
 
       - name: If PR is closed
-        if: ${{ github.event.pull_request.state == 'closed' }}
-        run: echo "I was ran because the PR was closed"
+        if: ${{ github.event.pull_request.state == 'closed' && startsWith(github.event.pull_request.title, '[Merged By Bors]') }}
+        run: echo "I was ran because the PR was closed and it was merged by BORS"
 
       - name: If merge to main
         if: ${{ github.ref_name == 'main' }}
