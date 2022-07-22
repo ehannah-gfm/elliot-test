@@ -50,6 +50,9 @@ jobs:
         run: echo "I was merged because of github.event.pull_request.merged"
 
       - run: |
+          echo ${{ env.FAROS_DRY_RUN }}
+
+      - run: |
           echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
 
       - run: |
