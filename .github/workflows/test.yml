@@ -24,8 +24,10 @@ jobs:
           echo "Hi Elliot"
 
       - name: Dump Github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github.event) }}
         run: |
-            echo ${{ toJson(github)}}
+            echo "$GITHUB_CONTEXT"
 
       - name: Merge me
         if: ${{ github.ref_name == 'main' }}
