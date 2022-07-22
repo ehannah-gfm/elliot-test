@@ -56,6 +56,7 @@ jobs:
     name: World
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref_name, 'v') || startsWith(github.ref_name, 'test') }}
+    needs: [job-1]
     steps:
       - run: |
           echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
