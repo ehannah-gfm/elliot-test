@@ -15,10 +15,15 @@ on:
       - closed
       - synchronize
 
+env:
+  FAROS_DRY_RUN: 1
+
 jobs:
   job-1:
     name: Hello
     runs-on: ubuntu-latest
+    env:
+      FAROS_DRY_RUN: 0
     steps:
       - run: |
           echo "Hello World"
@@ -45,13 +50,7 @@ jobs:
         run: echo "I was merged because of github.event.pull_request.merged"
 
       - run: |
-          echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
-
-      - run: |
-          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
-
-      - run: |
-          echo "$GITHUB_ENV"
+          echo ${{ env.FAROS_DRY_RUN }}
 
   job-2:
     name: World
@@ -60,15 +59,4 @@ jobs:
     needs: [job-1]
     steps:
       - run: |
-          echo "$GITHUB_ENV"
-
-      - run: |
-          echo "FAROS_DRY_RUN=1" >> $GITHUB_ENV
-        if: ${{ startsWith(github.ref_name, 'test') }}
-
-      - run: |
-          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
-        if: ${{ startsWith(github.ref_name, 'v') }}
-
-      - run: |
-          echo "$GITHUB_ENV"
+          echo ${{ env.FAROS_DRY_RUN }}
