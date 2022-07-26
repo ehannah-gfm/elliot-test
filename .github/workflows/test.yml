@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [job-1]
     env:
-      FAROS_DRY_RUN: ${{ github.event.pull_request.merged && '0' || '1' }}
+      FAROS_DRY_RUN: ${{ github.event.pull_request.merged && 0 || 1 }}
     steps:
       - run: |
           echo ${{ env.FAROS_DRY_RUN }}
