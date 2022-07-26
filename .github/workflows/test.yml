@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - '**'
+    tags:
+      - v*
+      - test*
   pull_request:
     branches:
       - 'main'
@@ -11,6 +14,9 @@ on:
       - opened
       - closed
       - synchronize
+
+env:
+  FAROS_DRY_RUN: 1
 
 jobs:
   job-1:
@@ -40,3 +46,25 @@ jobs:
       - name: PR Merge me
         if: ${{ github.event.pull_request.merged }}
         run: echo "I was merged because of github.event.pull_request.merged"
+
+      - run: |
+          echo ${{ env.FAROS_DRY_RUN }}
+
+      - run: |
+          echo "FAROS_DRY_RUN=0" >> $GITHUB_ENV
+
+      - run: |
+          echo ${{ env.FAROS_DRY_RUN }}
+
+      - run: |
+          echo "$GITHUB_ENV"
+
+  job-2:
+    name: World
+    runs-on: ubuntu-latest
+    needs: [job-1]
+    env:
+      FAROS_DRY_RUN: ${{ (github.event.pull_request.merged || startsWith(github.ref_name, 'test')) && '0' || '1' }}
+    steps:
+      - run: |
+          echo ${{ env.FAROS_DRY_RUN }}
